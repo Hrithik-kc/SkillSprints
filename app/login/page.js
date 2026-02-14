@@ -52,23 +52,22 @@ export default function Login() {
  return (
   <div className="min-h-screen flex bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white">
 
-    <div className="hidden md:flex md:w-1/2 lg:w-[45%] relative">
-      <img
-        src="https://as1.ftcdn.net/v2/jpg/04/22/94/62/1000_F_422946225_fwALKxPJg5HtQMkcb5DVuyCWPYSMNH3s.jpg"
-        className="w-full h-full object-cover"
-      />
-      <div className="absolute inset-0 bg-black/40"></div>
-    </div>
+      <div className="hidden md:flex md:w-1/2 lg:w-[45%] relative h-screen overflow-hidden">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq6b4WFhr4CIobNt0BHi4HPX9KftEkn9IHNQ&s"//fix the image proper
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </div>
 
   
     <div className="w-full md:w-1/2 lg:w-[55%] flex items-center justify-center px-6">
-      <div className="w-full max-w-md bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl p-8">
+      <div className="w-full max-w-md bg-black rounded-2xl shadow-2xl p-8">
 
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-2">
+        <h1 className="text-3xl font-bold text-white mb-2">
           Welcome Back
         </h1>
 
-        <p className="text-center text-gray-500 mb-6">
+        <p className="text-center text-gray-400 mb-6">
           Enter your email and password to continue
         </p>
 
@@ -76,19 +75,19 @@ export default function Login() {
           <input
             type="email"
             placeholder="Email"
-            className="w-full text-gray-700 h-11 px-4 rounded-lg border bg-sky-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
+            className="w-full text-gray-700 h-11 px-4 rounded-lg  bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
             onChange={(e) => setEmail(e.target.value)}
           />
 
           <input
             type="password"
             placeholder="Password"
-            className="w-full text-gray-700 h-11 px-4 rounded-lg border bg-sky-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
+            className="w-full text-gray-700 h-11 px-4 rounded-lg  bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
             onChange={(event) => setpassword(event.target.value)}
           />
 
           <button
-            className="w-full h-11 rounded-lg bg-[#00ADB5] hover:bg-[#393E46] text-white font-semibold transition duration-200"
+            className="w-full h-11 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold transition"
             onClick={async () => {
               try {
                 await loginComponent(email, password);
