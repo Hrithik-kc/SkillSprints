@@ -15,7 +15,7 @@ export default function Login() {
       
       <div className="w-full max-w-md bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl p-8">
         
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-2">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-2 animate-fade-in">
           Welcome Back
         </h1>
 
