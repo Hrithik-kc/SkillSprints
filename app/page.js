@@ -9,13 +9,21 @@ export default function Register() {
   const [password, setpassword] = useState("");
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-800 via-slate-700 to-teal-600 px-4">
-      
-      <div className="w-full max-w-md bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl p-8">
-        
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-2 animate-fade-in">
-          Create Account
-        </h1>
+    <div className="min-h-screen flex bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white">
+
+      <div className="hidden md:flex md:w-1/2 lg:w-[45%] relative h-screen overflow-hidden">
+        <img
+          src="https://static.vecteezy.com/system/resources/thumbnails/003/689/228/small_2x/online-registration-or-sign-up-login-for-account-on-smartphone-app-user-interface-with-secure-password-mobile-application-for-ui-web-banner-access-cartoon-people-illustration-vector.jpg"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </div>
+
+      <div className="w-full md:w-1/2 lg:w-[55%] flex items-center justify-center px-6">
+        <div className="w-full max-w-md bg-black rounded-2xl shadow-2xl p-8">
+
+          <h1 className="text-3xl font-bold text-white mb-2">
+            Create an account
+          </h1>
 
           <p className="text-gray-400 mb-6">
             Start your gamified learning journey 🚀
@@ -33,14 +41,14 @@ export default function Register() {
             <input
               type="password"
               placeholder="Password"
-              className="w-full h-11 px-4 rounded-lg  bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full h-11 px-4 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
               onChange={(e) => setpassword(e.target.value)}
             />
 
             <input
               type="password"
               placeholder="Confirm Password"
-              className="w-full h-11 px-4 rounded-lg  bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full h-11 px-4 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
 
             <button
@@ -67,6 +75,7 @@ export default function Register() {
               Login
             </span>
           </div>
+
         </div>
       </div>
     </div>
