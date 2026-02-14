@@ -1,4 +1,4 @@
-import { authFeature} from "./firebaseApp";
+import { authFeature} from "@/lib/firebase";
 import { signInWithEmailAndPassword,createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 export async function loginComponent(email,password){

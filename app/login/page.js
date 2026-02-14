@@ -59,7 +59,7 @@ export default function Login() {
           Donot have an account?{" "}
           <span
             className="text-[#00ADB5] hover:text-[#393E46] font-medium cursor-pointer hover:underline"
-            onClick={() => router.push("/Signup")}
+            onClick={() => router.push("/")}
           >
             Register Now
           </span>
