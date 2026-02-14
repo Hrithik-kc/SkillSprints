@@ -48,7 +48,6 @@ export default function Dashboard() {
             {userData?.email || "Loading..."}
           </p>
 
-          {/* Stats */}
           <div className="flex justify-center gap-6 mb-6 flex-wrap">
 
             <div className="bg-white/10 px-6 py-4 rounded-xl hover:scale-105 transition">
