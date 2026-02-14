@@ -20,7 +20,7 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white">
+    <div className="min-h-screen bg-linear-to-br from-indigo-900 via-purple-900 to-black text-white">
 
       <nav className="flex justify-between items-center px-8 py-4 bg-black/30 backdrop-blur-lg border-b border-white/10">
         <h2 className="text-2xl font-bold  text-indigo-400">

@@ -11,7 +11,7 @@ export default function Login() {
   const [password, setpassword] = useState("");
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-800 via-slate-700 to-teal-600 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-slate-800 via-slate-700 to-teal-600 px-4">
       
       <div className="w-full max-w-md bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl p-8">
         

@@ -40,7 +40,7 @@ export default function Profile() {
         </button>
 
         <div className="flex flex-col items-center">
-          <div className="w-24 h-24 rounded-full bg-gradient-to-r from-pink-500 to-indigo-500 flex items-center justify-center text-3xl font-bold shadow-lg animate-pulse">
+          <div className="w-24 h-24 rounded-full bg-linear-to-r from-pink-500 to-indigo-500 flex items-center justify-center text-3xl font-bold shadow-lg animate-pulse">
             {userData?.email?.charAt(0).toUpperCase()}
           </div>
 
