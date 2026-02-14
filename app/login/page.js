@@ -13,7 +13,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      // 1️⃣ Login with Firebase Auth
+      
       const userCredential = await loginComponent(email, password);
       const user = authFeature.currentUser;
 
@@ -22,7 +22,7 @@ export default function Login() {
       const userRef = doc(db, "users", user.uid);
       const userSnap = await getDoc(userRef);
 
-      // 2️⃣ If user document does not exist → create it
+      
       if (!userSnap.exists()) {
         await setDoc(userRef, {
           email: user.email,
@@ -74,21 +74,13 @@ export default function Login() {
             type="password"
             placeholder="Password"
             className="w-full  text-gray-700 h-11 px-4 rounded-lg border bg-sky-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
-            onChange={(event) => setpassword(event.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
           />
 
           <button
             className="w-full h-11 rounded-lg bg-[#00ADB5] hover:bg-[#393E46]  text-white font-semibold transition duration-200"
-            onClick={async () => {
-              try {
-                await loginComponent(email, password);
-                localStorage.setItem('isAuthenticated', 'true');
-                window.dispatchEvent(new Event('storage'));
-                router.push("/profile");
-              } catch (exception) {
-                console.log("error");
-              }
-            }}
+           onClick={handleLogin}
+
           >
             Login
           </button>
@@ -106,6 +98,6 @@ export default function Login() {
 
       </div>
     </div>
-  </div>
+  
 );
 }
