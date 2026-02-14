@@ -33,9 +33,9 @@ export default function Login() {
           practiceProgress: {
             easyCompleted: 0,
             mediumCompleted: 0,
-            hardCompleted: 0
+            hardCompleted: 0,
           },
-          createdAt: new Date()
+          createdAt: new Date(),
         });
       }
 
@@ -43,7 +43,6 @@ export default function Login() {
       window.dispatchEvent(new Event("storage"));
 
       router.push("/profile");
-
     } catch (error) {
       console.log("Login Error:", error);
     }
@@ -82,8 +81,10 @@ export default function Login() {
           <input
             type="password"
             placeholder="Password"
+
             className="w-full text-gray-700 h-11 px-4 rounded-lg  bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
             onChange={(event) => setpassword(event.target.value)}
+           
           />
 
           <button
@@ -91,8 +92,8 @@ export default function Login() {
             onClick={async () => {
               try {
                 await loginComponent(email, password);
-                localStorage.setItem('isAuthenticated', 'true');
-                window.dispatchEvent(new Event('storage'));
+                localStorage.setItem("isAuthenticated", "true");
+                window.dispatchEvent(new Event("storage"));
                 router.push("/profile");
               } catch (exception) {
                 console.log("error");
@@ -104,17 +105,16 @@ export default function Login() {
         </div>
 
         <div className="text-center mt-6 text-sm text-gray-500">
-          Don't have an account?{" "}
+          Donot have an account?{" "}
           <span
             className="text-[#00ADB5] hover:text-[#393E46] font-medium cursor-pointer hover:underline"
-            onClick={() => router.push("/Signup")}
+            onClick={() => router.push("/")}
           >
             Register Now
           </span>
         </div>
-
       </div>
     </div>
   </div>
-);
+  );
 }
