@@ -56,7 +56,7 @@ export default function Login() {
         </div>
 
         <div className="text-center mt-6 text-sm text-gray-500">
-          Don't have an account?{" "}
+          Donot have an account?{" "}
           <span
             className="text-[#00ADB5] hover:text-[#393E46] font-medium cursor-pointer hover:underline"
             onClick={() => router.push("/Signup")}
