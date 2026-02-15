@@ -55,7 +55,7 @@ export default function Register() {
             <div className="text-left">
               <p className="text-sm mb-2 text-gray-300">Select Role</p>
 
-              <div className="flex gap-6">
+              {/* <div className="flex gap-6">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="radio"
@@ -77,17 +77,18 @@ export default function Register() {
                   />
                   Admin
                 </label>
-              </div>
+              </div> */}
             </div>
 
             <button
               className="w-full h-11 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold transition"
               onClick={async () => {
                 try {
-                  await registerComponent(email, password, role);
+                  await registerComponent(email, password, router);
                   router.push("/login");
                 } catch (err) {
-                  alert("Registration failed");
+                  // alert("Registration failed");
+                  console.log(" ");
                 }
               }}
             >

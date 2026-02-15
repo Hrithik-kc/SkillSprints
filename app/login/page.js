@@ -3,58 +3,26 @@
 import { loginComponent } from "../core/authLogic";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { authFeature, db } from "@/lib/firebase";
-import { doc, getDoc, setDoc } from "firebase/firestore";
 
 export default function Login() {
   const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("student");
+  const [teacherId, setTeacherId] = useState("");
 
   const handleLogin = async () => {
     try {
-      const userCredential = await loginComponent(email, password, router);
-      const user = userCredential.user;
-
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
-
-      if (!userSnap.exists()) {
-        await setDoc(userRef, {
-          email: user.email,
-          xp: 0,
-          level: 1,
-          title: "Beginner",
-          leaderboardPoints: 0,
-          practiceProgress: {
-            easyCompleted: 0,
-            mediumCompleted: 0,
-            hardCompleted: 0,
-            easySolvedIndexes: [],
-            mediumSolvedIndexes: [],
-            hardSolvedIndexes: [],
-          },
-          createdAt: new Date(),
-        });
-      }
-
-      const role = userSnap.data().role || "student";
-
-      localStorage.setItem("isAuthenticated", "true");
-      window.dispatchEvent(new Event("storage"));
-
-      if (role === "admin") {
-        router.push("/admin-dashboard");
-      } else {
-        router.push("/dashboard");
-      }
+      await loginComponent(email, password, role, teacherId, router);
     } catch (error) {
-      console.log("Login Error:", error);
+      alert("Authentication failed.");
     }
   };
 
   return (
-    <div className="min-h-screen flex bg-linear-to-br from-indigo-900 via-purple-900 to-black text-white">
+    <div className="min-h-screen flex bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white">
+
       <div className="hidden md:flex md:w-1/2 lg:w-[45%] relative h-screen overflow-hidden">
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq6b4WFhr4CIobNt0BHi4HPX9KftEkn9IHNQ&s"
@@ -64,6 +32,7 @@ export default function Login() {
 
       <div className="w-full md:w-1/2 lg:w-[55%] flex items-center justify-center px-6">
         <div className="w-full max-w-md bg-black rounded-2xl shadow-2xl p-8">
+
           <h1 className="text-3xl font-bold text-white mb-2">
             Welcome Back
           </h1>
@@ -73,6 +42,7 @@ export default function Login() {
           </p>
 
           <div className="space-y-4">
+
             <input
               type="email"
               placeholder="Email"
@@ -84,8 +54,43 @@ export default function Login() {
               type="password"
               placeholder="Password"
               className="w-full h-11 px-4 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              onChange={(event) => setPassword(event.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
+
+            <div className="text-left">
+              <p className="text-sm mb-2 text-gray-300">Select Role</p>
+
+              <div className="flex gap-6">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    value="student"
+                    checked={role === "student"}
+                    onChange={(e) => setRole(e.target.value)}
+                  />
+                  Student
+                </label>
+
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    value="admin"
+                    checked={role === "admin"}
+                    onChange={(e) => setRole(e.target.value)}
+                  />
+                  Admin
+                </label>
+              </div>
+            </div>
+
+            {role === "admin" && (
+              <input
+                type="password"
+                placeholder="Enter Teacher ID"
+                className="w-full h-11 px-4 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                onChange={(e) => setTeacherId(e.target.value)}
+              />
+            )}
 
             <button
               className="w-full h-11 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold transition"
@@ -104,6 +109,7 @@ export default function Login() {
               Register Now
             </span>
           </div>
+
         </div>
       </div>
     </div>

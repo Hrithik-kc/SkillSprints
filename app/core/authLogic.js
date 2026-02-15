@@ -4,42 +4,10 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 
-
-const ADMIN_EMAIL = "teacher@gmail.com";
-
-
-export async function loginComponent(email, password) {
+export async function registerComponent(email, password, router) {
   try {
-    const result = await signInWithEmailAndPassword(
-      authFeature,
-      email,
-      password
-    );
-
-    alert("You have logged in successfully!!!");
-
-
-    return result;
-
-  } catch (err) {
-    console.log(JSON.stringify(err));
-    alert("You have not registered yet. Kindly register to continue.");
-    throw err;
-  }
-}
-
-
-
-export async function registerComponent(email, password, role) {
-  try {
-
-    
-    if (role === "admin" && email !== ADMIN_EMAIL) {
-      role = "student";
-    }
-
     const result = await createUserWithEmailAndPassword(
       authFeature,
       email,
@@ -50,7 +18,7 @@ export async function registerComponent(email, password, role) {
 
     await setDoc(doc(db, "users", user.uid), {
       email,
-      role,
+      role: "student",
       xp: 0,
       level: 1,
       title: "Beginner",
@@ -58,28 +26,74 @@ export async function registerComponent(email, password, role) {
       createdAt: new Date(),
     });
 
-    alert("You have registered successfully!! Kindly Login to continue.");
-
-    return result;
+    alert("Account created successfully. Please login.");
+    router.push("/login");
 
   } catch (err) {
-    
 
     if (err.code === "auth/email-already-in-use") {
-      alert("This email is already registered. Please login instead.");
-    
+      alert("Account already exists. Please login.");
+      router.push("/login");
+      return;
+    }
 
-    } else if (err.code === "auth/invalid-email") {
-      alert("Please enter a valid email address.");
-   
+    alert("Unable to create account. Please try again.");
+  }
+}
 
-    } else if (err.code === "auth/weak-password") {
-      alert("Password should be at least 6 characters.");
-    
+export async function loginComponent(
+  email,
+  password,
+  role,
+  teacherId,
+  router
+) {
+
+  const HARD_CODED_TEACHER_ID = "SUPER999";
+
+  try {
+
+    const result = await signInWithEmailAndPassword(
+      authFeature,
+      email,
+      password
+    );
+
+    const user = result.user;
+
+    const userRef = doc(db, "users", user.uid);
+    const snap = await getDoc(userRef);
+
+    if (!snap.exists()) {
+      alert("Authentication failed.");
+      return;
+    }
+
+    if (role === "admin") {
+
+      if (teacherId !== HARD_CODED_TEACHER_ID) {
+        alert("Authentication failed.");
+        return;
+      }
+
+      await updateDoc(userRef, {
+        role: "admin",
+      });
+
+      localStorage.setItem("isAuthenticated", "true");
+      window.dispatchEvent(new Event("storage"));
+
+      router.push("/admin-dashboard");
 
     } else {
-      alert("Registration failed. Please try again.");
-    
+
+      localStorage.setItem("isAuthenticated", "true");
+      window.dispatchEvent(new Event("storage"));
+
+      router.push("/dashboard");
     }
+
+  } catch {
+    alert("Authentication failed.");
   }
 }
