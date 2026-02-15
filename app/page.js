@@ -7,6 +7,7 @@ export default function Register() {
   const router = useRouter();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const [role, setRole] = useState("student");
 
   return (
     <div className="min-h-screen flex bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white">
@@ -51,11 +52,39 @@ export default function Register() {
               className="w-full h-11 px-4 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
 
+            <div className="text-left">
+              <p className="text-sm mb-2 text-gray-300">Select Role</p>
+
+              <div className="flex gap-6">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="student"
+                    checked={role === "student"}
+                    onChange={(e) => setRole(e.target.value)}
+                  />
+                  Student
+                </label>
+
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="admin"
+                    checked={role === "admin"}
+                    onChange={(e) => setRole(e.target.value)}
+                  />
+                  Admin
+                </label>
+              </div>
+            </div>
+
             <button
               className="w-full h-11 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold transition"
               onClick={async () => {
                 try {
-                  await registerComponent(email, password);
+                  await registerComponent(email, password, role);
                   router.push("/login");
                 } catch (err) {
                   alert("Registration failed");
@@ -78,7 +107,6 @@ export default function Register() {
 
         </div>
       </div>
-    
+    </div>
   );
 }
-
