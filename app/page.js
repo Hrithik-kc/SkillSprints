@@ -87,7 +87,8 @@ export default function Register() {
                   await registerComponent(email, password, role);
                   router.push("/login");
                 } catch (err) {
-                  alert("Registration failed");
+                  // alert("Registration failed");
+                  console.log(" ");
                 }
               }}
             >

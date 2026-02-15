@@ -10,46 +10,89 @@ export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+const handleLogin = async () => {
+  try {
 
-  const handleLogin = async () => {
-    try {
+    const userCredential = await loginComponent(email, password, router);
+    const user = userCredential.user;
+
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
       
-      const userCredential = await loginComponent(email, password);
-      const user = authFeature.currentUser;
-
-      if (!user) return;
-
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
-
-      
-      if (!userSnap.exists()) {
-        await setDoc(userRef, {
-          email: user.email,
-          xp: 0,
-          level: 1,
-          title: "Beginner",
-          leaderboardPoints: 0,
-         practiceProgress: {
-  easyCompleted: 0,
-  mediumCompleted: 0,
-  hardCompleted: 0,
-  easySolvedIndexes: [],
-  mediumSolvedIndexes: [],
-  hardSolvedIndexes: []
-},
-          createdAt: new Date(),
-        });
-      }
-
-      localStorage.setItem("isAuthenticated", "true");
-      window.dispatchEvent(new Event("storage"));
-
-      router.push("/dashboard");
-    } catch (error) {
-      console.log("Login Error:", error);
+    if (!userSnap.exists()) {
+      await setDoc(userRef, {
+        email: user.email,
+        xp: 0,
+        level: 1,
+        title: "Beginner",
+        leaderboardPoints: 0,
+        practiceProgress: {
+          easyCompleted: 0,
+          mediumCompleted: 0,
+          hardCompleted: 0,
+          easySolvedIndexes: [],
+          mediumSolvedIndexes: [],
+          hardSolvedIndexes: []
+        },
+        createdAt: new Date(),
+      });
     }
-  };
+
+    const role = userSnap.data().role || "student";
+
+    localStorage.setItem("isAuthenticated", "true");
+    window.dispatchEvent(new Event("storage"));
+
+    // ⭐ ROLE BASED ROUTING
+    if (role === "admin") {
+      router.push("/admin-dashboard");
+    } else {
+      router.push("/dashboard");
+    }
+  } catch (error) {
+    console.log("Login Error:", error);
+  }
+};
+
+//   const handleLogin = async () => {
+//     try {
+      
+//       const userCredential = await loginComponent(email, password);
+//       const user = authFeature.currentUser;
+
+//       if (!user) return;
+
+//       const userRef = doc(db, "users", user.uid);
+//       const userSnap = await getDoc(userRef);
+
+      
+//       if (!userSnap.exists()) {
+//         await setDoc(userRef, {
+//           email: user.email,
+//           xp: 0,
+//           level: 1,
+//           title: "Beginner",
+//           leaderboardPoints: 0,
+//          practiceProgress: {
+//   easyCompleted: 0,
+//   mediumCompleted: 0,
+//   hardCompleted: 0,
+//   easySolvedIndexes: [],
+//   mediumSolvedIndexes: [],
+//   hardSolvedIndexes: []
+// },
+//           createdAt: new Date(),
+//         });
+//       }
+
+//       localStorage.setItem("isAuthenticated", "true");
+//       window.dispatchEvent(new Event("storage"));
+
+//       router.push("/profile");
+//     } catch (error) {
+//       console.log("Login Error:", error);
+//     }
+//   };
 
  return (
   <div className="min-h-screen flex bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white">
