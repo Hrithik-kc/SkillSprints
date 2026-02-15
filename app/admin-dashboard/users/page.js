@@ -98,7 +98,7 @@ export default function AdminUsers() {
       const userData = qSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
       setUsers(userData);
 
-      // Calculate stats
+     
       const totalXP = userData.reduce((sum, u) => sum + (u.xp || 0), 0);
       const students = userData.filter(u => u.role === "student").length;
       const admins = userData.filter(u => u.role === "admin").length;
@@ -165,14 +165,14 @@ export default function AdminUsers() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 relative overflow-hidden">
-      {/* Animated Background Elements */}
+     
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
         <div className="absolute top-40 right-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style={{ animationDelay: "1s" }}></div>
         <div className="absolute -bottom-32 left-40 w-72 h-72 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style={{ animationDelay: "2s" }}></div>
       </div>
 
-      {/* Header */}
+    
       <div className="relative z-10 bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <button
@@ -188,7 +188,7 @@ export default function AdminUsers() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Page Title */}
+     
         <div className="text-center mb-12">
           <div className="inline-block">
             <div className="relative">
@@ -203,7 +203,7 @@ export default function AdminUsers() {
           </p>
         </div>
 
-        {/* Stats Cards */}
+        
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity"></div>
@@ -246,12 +246,12 @@ export default function AdminUsers() {
           </div>
         </div>
 
-        {/* Filters & Search */}
+      
         <div className="relative mb-8">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-30"></div>
           <div className="relative bg-black/40 backdrop-blur-xl rounded-xl shadow-2xl p-6 border border-white/10">
             <div className="flex flex-col md:flex-row gap-4">
-              {/* Search */}
+            
               <div className="flex-1">
                 <div className="relative">
                   <input
@@ -299,7 +299,7 @@ export default function AdminUsers() {
                 </button>
               </div>
 
-              {/* Sort */}
+              
               <div className="flex items-center space-x-2">
                 <span className="text-white font-bold text-sm">SORT:</span>
                 <select
@@ -316,11 +316,11 @@ export default function AdminUsers() {
           </div>
         </div>
 
-        {/* Users List */}
+       
         <div className="relative">
           <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl blur opacity-20"></div>
           <div className="relative bg-black/30 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden border border-white/10">
-            {/* Table Header */}
+           
             <div className="bg-black/40 border-b border-white/10">
               <div className="grid grid-cols-12 gap-4 px-6 py-4 text-sm font-bold text-yellow-300">
                 <div className="col-span-1">#</div>
@@ -332,7 +332,7 @@ export default function AdminUsers() {
               </div>
             </div>
 
-            {/* Table Body */}
+           
             <div className="divide-y divide-white/10 max-h-[600px] overflow-y-auto">
               {filteredUsers.length === 0 ? (
                 <div className="text-center py-16">
@@ -346,14 +346,14 @@ export default function AdminUsers() {
                     key={user.id}
                     className="grid grid-cols-12 gap-4 px-6 py-4 hover:bg-white/5 transition-colors group"
                   >
-                    {/* Index */}
+                
                     <div className="col-span-1 flex items-center">
                       <span className="text-lg font-bold text-gray-400 group-hover:text-yellow-400 transition-colors">
                         {index + 1}
                       </span>
                     </div>
 
-                    {/* User Info */}
+                    
                     <div className="col-span-4 flex items-center space-x-3">
                       <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white font-bold text-lg border-2 border-white/20 shadow-lg">
                         {user.email?.charAt(0).toUpperCase()}
@@ -366,14 +366,13 @@ export default function AdminUsers() {
                       </div>
                     </div>
 
-                    {/* Role */}
+                 
                     <div className="col-span-2 flex items-center justify-center">
                       <span className={`${getRoleBadge(user.role)} px-4 py-2 rounded-full text-xs font-bold uppercase shadow-lg`}>
                         {user.role === "admin" ? "👨‍💼 Admin" : "👨‍🎓 Student"}
                       </span>
                     </div>
 
-                    {/* Level */}
                     <div className="col-span-2 flex items-center justify-center">
                       <div className="text-center">
                         <div className="text-2xl font-black text-blue-400">{user.level || 1}</div>
@@ -383,7 +382,7 @@ export default function AdminUsers() {
                       </div>
                     </div>
 
-                    {/* XP */}
+                 
                     <div className="col-span-2 flex items-center justify-center">
                       <div className="text-center">
                         <div className="text-2xl font-black text-purple-400">
@@ -393,7 +392,7 @@ export default function AdminUsers() {
                       </div>
                     </div>
 
-                    {/* Streak */}
+                  
                     <div className="col-span-1 flex items-center justify-center">
                       <span className="text-xl">
                         {user.streak > 0 ? `${user.streak}🔥` : "—"}
@@ -404,7 +403,7 @@ export default function AdminUsers() {
               )}
             </div>
 
-            {/* Footer */}
+            
             <div className="bg-black/40 border-t border-white/10 px-6 py-4">
               <p className="text-center text-gray-400 text-sm font-semibold">
                 Showing {filteredUsers.length} of {users.length} users
@@ -413,7 +412,7 @@ export default function AdminUsers() {
           </div>
         </div>
 
-        {/* Action Buttons */}
+       
         <div className="mt-8 flex justify-center space-x-4">
           <button
             onClick={fetchUsers}

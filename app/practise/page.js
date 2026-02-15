@@ -126,7 +126,7 @@ export default function MediumPracticeHome() {
   const isHardUnlocked = progress?.mediumSolvedIndexes?.length > 0;
 
   const getProgressPercentage = (difficulty) => {
-    const total = 100; // Assuming 100 questions per difficulty
+    const total = 100; 
     if (difficulty === "easy") {
       return ((progress?.easySolvedIndexes?.length || 0) / total) * 100;
     }
@@ -157,11 +157,10 @@ export default function MediumPracticeHome() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 relative overflow-hidden">
-      {/* Animated Background Elements */}
+    
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-green-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
       
-        {/* Floating Icons */}
         {[...Array(15)].map((_, i) => (
           <div
             key={i}
@@ -178,7 +177,7 @@ export default function MediumPracticeHome() {
         ))}
       </div>
 
-      {/* Header */}
+    
       <div className="relative z-10 bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <button
@@ -194,7 +193,7 @@ export default function MediumPracticeHome() {
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Page Title */}
+      
         <div className="text-center mb-16">
           <div className="inline-block">
             <div className="relative">
@@ -212,9 +211,9 @@ export default function MediumPracticeHome() {
           </p>
         </div>
 
-        {/* Difficulty Cards */}
+      
         <div className="space-y-8">
-          {/* Easy Level */}
+       
           <div className="relative group">
             <div className={`absolute -inset-2 bg-gradient-to-r rounded-2xl blur ${
               isEasyUnlocked ? "opacity-50 group-hover:opacity-75" : "opacity-20"
@@ -233,7 +232,7 @@ export default function MediumPracticeHome() {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-6">
-                    {/* Icon */}
+                  
                     <div className={`w-24 h-24 rounded-2xl flex items-center justify-center text-5xl ${
                       isEasyUnlocked
                         ? "bg-gradient-to-br from-green-400 to-emerald-500 shadow-lg shadow-green-500/50"
@@ -242,7 +241,6 @@ export default function MediumPracticeHome() {
                       {isEasyUnlocked ? "🟢" : "🔒"}
                     </div>
 
-                    {/* Info */}
                     <div className="text-left">
                       <h2 className={`text-4xl font-black mb-2 ${
                         isEasyUnlocked ? "text-green-300" : "text-gray-500"
@@ -275,7 +273,7 @@ export default function MediumPracticeHome() {
                     </div>
                   </div>
 
-                  {/* Status Badge */}
+                
                   <div className="text-center">
                     {isEasyUnlocked ? (
                       <div className="bg-green-500 text-white px-6 py-3 rounded-xl font-black text-lg shadow-lg">
@@ -292,7 +290,7 @@ export default function MediumPracticeHome() {
             </div>
           </div>
 
-          {/* Medium Level */}
+        
           <div className="relative group">
             <div className={`absolute -inset-2 bg-gradient-to-r  rounded-2xl blur ${
               isMediumUnlocked ? "opacity-50 group-hover:opacity-75" : "opacity-20"
@@ -311,7 +309,7 @@ export default function MediumPracticeHome() {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-6">
-                    {/* Icon */}
+                 
                     <div className={`w-24 h-24 rounded-2xl flex items-center justify-center text-5xl ${
                       isMediumUnlocked
                         ? "bg-gradient-to-br from-yellow-400 to-orange-500 shadow-lg shadow-yellow-500/50"
@@ -320,7 +318,6 @@ export default function MediumPracticeHome() {
                       {isMediumUnlocked ? "🟡" : "🔒"}
                     </div>
 
-                    {/* Info */}
                     <div className="text-left">
                       <h2 className={`text-4xl font-black mb-2 ${
                         isMediumUnlocked ? "text-yellow-300" : "text-gray-500"
@@ -357,7 +354,7 @@ export default function MediumPracticeHome() {
                     </div>
                   </div>
 
-                  {/* Status Badge */}
+                
                   <div className="text-center">
                     {isMediumUnlocked ? (
                       <div className="bg-yellow-500 text-black px-6 py-3 rounded-xl font-black text-lg shadow-lg">
@@ -374,7 +371,6 @@ export default function MediumPracticeHome() {
             </div>
           </div>
 
-          {/* Hard Level */}
           <div className="relative group">
             <div className={`absolute -inset-2 bg-gradient-to-r rounded-2xl blur ${
               isHardUnlocked ? "opacity-50 group-hover:opacity-75" : "opacity-20"
@@ -393,7 +389,7 @@ export default function MediumPracticeHome() {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-6">
-                    {/* Icon */}
+                  
                     <div className={`w-24 h-24 rounded-2xl flex items-center justify-center text-5xl ${
                       isHardUnlocked
                         ? "bg-gradient-to-br from-red-400 to-pink-500 shadow-lg shadow-red-500/50"
@@ -402,7 +398,7 @@ export default function MediumPracticeHome() {
                       {isHardUnlocked ? "🔴" : "🔒"}
                     </div>
 
-                    {/* Info */}
+                
                     <div className="text-left">
                       <h2 className={`text-4xl font-black mb-2 ${
                         isHardUnlocked ? "text-red-300" : "text-gray-500"
@@ -439,7 +435,7 @@ export default function MediumPracticeHome() {
                     </div>
                   </div>
 
-                  {/* Status Badge */}
+                  
                   <div className="text-center">
                     {isHardUnlocked ? (
                       <div className="bg-red-500 text-white px-6 py-3 rounded-xl font-black text-lg shadow-lg">
@@ -457,7 +453,7 @@ export default function MediumPracticeHome() {
           </div>
         </div>
 
-        {/* Info Box */}
+       
         <div className="relative mt-12">
           <div className="absolute -inset-1 bg-gradient-to-rrounded-xl blur opacity-30"></div>
           <div className="relative bg-black/40 backdrop-blur-xl rounded-xl shadow-2xl p-8 border border-white/10">

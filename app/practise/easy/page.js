@@ -15,19 +15,16 @@ export default function EasyPractice() {
   const [isCorrect, setIsCorrect] = useState(false);
   const [completedQuestions, setCompletedQuestions] = useState([]);
 
-  useEffect(() => {
-    fetchQuestions();
-    fetchUserProgress();
-  }, []);
 
-  const fetchQuestions = async () => {
+   const fetchQuestions = async () => {
     const snap = await getDoc(doc(db, "practiceQuestions", "easy"));
     if (snap.exists()) {
       setQuestions(snap.data().questions);
     }
   };
 
-  const fetchUserProgress = async () => {
+
+   const fetchUserProgress = async () => {
     const user = authFeature.currentUser;
     if (!user) return;
 
@@ -37,6 +34,15 @@ export default function EasyPractice() {
 
     setCompletedQuestions(solved);
   };
+  
+  useEffect(() => {
+    fetchQuestions();
+    fetchUserProgress();
+  }, []);
+
+ 
+
+ 
 
   const handleAnswer = async (selected) => {
     try {

@@ -485,12 +485,12 @@ export default function Leaderboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 relative overflow-hidden">
-      {/* Animated Background Elements */}
+   
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         
       </div>
 
-      {/* Header */}
+    
       <div className="relative z-10 bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <button
@@ -506,7 +506,7 @@ export default function Leaderboard() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Page Title with Animation */}
+       
         <div className="text-center mb-12">
           <div className="inline-block">
             <div className="relative">
@@ -521,7 +521,6 @@ export default function Leaderboard() {
           </p>
         </div>
 
-        {/* Current User Card - Glowing Effect */}
         {currentUser && (
           <div className="relative mb-10">
             <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 via-orange-500 to-pink-500 rounded-2xl blur opacity-50 animate-pulse"></div>
@@ -577,7 +576,7 @@ export default function Leaderboard() {
           </div>
         )}
 
-        {/* Filters with Glow */}
+       
         <div className="relative mb-8">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-30"></div>
           <div className="relative bg-black/40 backdrop-blur-xl rounded-xl shadow-2xl p-6 border border-white/10">
@@ -630,7 +629,7 @@ export default function Leaderboard() {
           </div>
         </div>
 
-        {/* Top 3 Podium - Ultra Creative */}
+      
         {top3Users.length >= 3 && (
           <div className="relative mb-12">
             <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-3xl blur opacity-20 "></div>
@@ -639,7 +638,7 @@ export default function Leaderboard() {
                 ⭐ TOP CHAMPIONS ⭐
               </h2>
               <div className="flex items-end justify-center space-x-8">
-                {/* 2nd Place */}
+             
                 <div className="flex flex-col items-center transform hover:scale-105 transition-transform">
                   <div className="relative mb-4">
                     <div className="absolute -inset-2 bg-gradient-to-r from-gray-300 to-gray-400 rounded-full blur opacity-50 animate-pulse"></div>
@@ -660,7 +659,7 @@ export default function Leaderboard() {
                   </div>
                 </div>
 
-                {/* 1st Place - Crown */}
+              
                 <div className="flex flex-col items-center transform hover:scale-110 transition-transform -mt-12">
                   <div className="text-6xl mb-2 animate-bounce">👑</div>
                   <div className="relative mb-4">
@@ -682,7 +681,7 @@ export default function Leaderboard() {
                   </div>
                 </div>
 
-                {/* 3rd Place */}
+              
                 <div className="flex flex-col items-center transform hover:scale-105 transition-transform">
                   <div className="relative mb-4">
                     <div className="absolute -inset-2 bg-gradient-to-r from-orange-300 to-orange-500 rounded-full blur opacity-50 animate-pulse"></div>
@@ -707,7 +706,7 @@ export default function Leaderboard() {
           </div>
         )}
 
-        {/* Remaining Users - Sleek Cards */}
+       
         <div className="space-y-3">
           {remainingUsers.map((user, index) => {
             const rank = index + 4;
@@ -754,7 +753,7 @@ export default function Leaderboard() {
                       </div>
                     </div>
 
-                    {/* Stats */}
+                   
                     <div className="flex items-center space-x-6">
                       <div className="text-center">
                         <div className="text-2xl font-black text-blue-400">{user.level}</div>
@@ -782,7 +781,7 @@ export default function Leaderboard() {
           })}
         </div>
 
-        {/* Empty State */}
+       
         {leaderboardData.length === 0 && (
           <div className="relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-gray-600 to-gray-800 rounded-2xl blur opacity-30"></div>
@@ -794,7 +793,7 @@ export default function Leaderboard() {
           </div>
         )}
 
-        {/* Stats Footer - Glowing Cards */}
+      
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity"></div>

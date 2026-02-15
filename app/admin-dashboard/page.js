@@ -31,7 +31,7 @@ export default function AdminDashboard() {
         return;
       }
 
-      // fetch users list/count for admin
+     
       const qSnap = await getDocs(collection(db, "users"));
       setUsersCount(qSnap.size);
       setUsersList(qSnap.docs.map((d) => ({ id: d.id, ...d.data() })));
@@ -80,12 +80,7 @@ export default function AdminDashboard() {
       <nav className="flex justify-between items-center px-8 py-4 bg-black/30 backdrop-blur-lg border-b border-white/10">
         <h2 className="text-2xl font-bold text-indigo-400">🚀 AptiMaster Admin</h2>
         <div className="flex items-center gap-4">
-          {/* <button
-            onClick={() => router.push("/profile")}
-            className="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl transition duration-300"
-          >
-            👤 Profile
-          </button> */}
+          
           <button
             onClick={() => router.push("/admin-dashboard/users")}
             className="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl transition duration-300"

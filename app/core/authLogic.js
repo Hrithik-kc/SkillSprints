@@ -63,23 +63,23 @@ export async function registerComponent(email, password, role) {
     return result;
 
   } catch (err) {
-    // console.error("Registration error:", err);
+    
 
     if (err.code === "auth/email-already-in-use") {
       alert("This email is already registered. Please login instead.");
-    //   throw new Error("Email already in use");
+    
 
     } else if (err.code === "auth/invalid-email") {
       alert("Please enter a valid email address.");
-    //   throw new Error("Invalid email");
+   
 
     } else if (err.code === "auth/weak-password") {
       alert("Password should be at least 6 characters.");
-    //   throw new Error("Weak password");
+    
 
     } else {
       alert("Registration failed. Please try again.");
-    //   throw err;
+    
     }
   }
 }
