@@ -487,25 +487,7 @@ export default function Leaderboard() {
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style={{ animationDelay: "1s" }}></div>
-        <div className="absolute -bottom-32 left-40 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style={{ animationDelay: "2s" }}></div>
         
-        {/* Floating Stars */}
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute text-yellow-300 animate-pulse"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              fontSize: `${Math.random() * 10 + 10}px`
-            }}
-          >
-            ⭐
-          </div>
-        ))}
       </div>
 
       {/* Header */}
@@ -528,14 +510,14 @@ export default function Leaderboard() {
         <div className="text-center mb-12">
           <div className="inline-block">
             <div className="relative">
-              <h1 className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 mb-4 animate-pulse">
+              <h1 className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 mb-4 ">
                 🏆 LEADERBOARD 🏆
               </h1>
-              <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-red-500 rounded-lg blur opacity-30 animate-pulse"></div>
+             
             </div>
           </div>
           <p className="text-xl text-yellow-200 font-semibold mt-4">
-            ⚡ Rise to the top and claim your glory! ⚡
+         Rise to the top and claim your glory!
           </p>
         </div>
 

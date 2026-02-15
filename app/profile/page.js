@@ -1,44 +1,4 @@
-// "use client";
 
-// import { useEffect, useState } from "react";
-// import { authFeature, db } from "@/lib/firebase";
-// import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
-// import { useRouter } from "next/navigation";
-
-// export default function Profile() {
-//   const [userData, setUserData] = useState(null);
-//   const [quizCount, setQuizCount] = useState(0);
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     const fetchProfile = async () => {
-//       const user = authFeature.currentUser;
-//       if (!user) return;
-
-//       const docSnap = await getDoc(doc(db, "users", user.uid));
-//       setUserData(docSnap.data());
-
-//       const q = query(collection(db, "quizResults"), where("userId", "==", user.uid));
-//       const snapshot = await getDocs(q);
-//       setQuizCount(snapshot.size);
-//     };
-
-//     fetchProfile();
-//   }, []);
-
-//   return (
-//     <div style={{ padding: "20px" }}>
-//       <button onClick={() => router.back()}>⬅ Back</button>
-
-//       <h2>Profile</h2>
-//       <p>Email: {userData?.email}</p>
-//       <p>Level: {userData?.level}</p>
-//       <p>Title: {userData?.title}</p>
-//       <p>XP: {userData?.xp}</p>
-//       <p>Quizzes Attempted: {quizCount}</p>
-//     </div>
-//   );
-// }
 
 "use client";
 
@@ -137,14 +97,14 @@ export default function Profile() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br  from-purple-900 via-indigo-900  flex items-center justify-center">
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-indigo-600"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900">
    
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
