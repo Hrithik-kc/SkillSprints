@@ -55,29 +55,7 @@ export default function Register() {
             <div className="text-left">
               <p className="text-sm mb-2 text-gray-300">Select Role</p>
 
-              {/* <div className="flex gap-6">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="role"
-                    value="student"
-                    checked={role === "student"}
-                    onChange={(e) => setRole(e.target.value)}
-                  />
-                  Student
-                </label>
 
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="role"
-                    value="admin"
-                    checked={role === "admin"}
-                    onChange={(e) => setRole(e.target.value)}
-                  />
-                  Admin
-                </label>
-              </div> */}
             </div>
 
             <button
@@ -87,7 +65,7 @@ export default function Register() {
                   await registerComponent(email, password, router);
                   router.push("/login");
                 } catch (err) {
-                  // alert("Registration failed");
+                  alert("Registration failed");
                   console.log(" ");
                 }
               }}
