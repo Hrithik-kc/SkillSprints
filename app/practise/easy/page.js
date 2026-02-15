@@ -93,7 +93,7 @@ export default function EasyPractice() {
     if (current < questions.length - 1) {
       setCurrent(current + 1);
     } else {
-      // Mark easy level as completed to unlock medium
+      
       const user = authFeature.currentUser;
       if (user) {
         const userRef = doc(db, "users", user.uid);

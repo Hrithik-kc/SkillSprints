@@ -20,7 +20,7 @@ export default function MediumPractice() {
     fetchUserProgress();
   }, []);
 
-  // Fetch questions from Firestore
+
   const fetchQuestions = async () => {
     try {
       const snap = await getDoc(doc(db, "practiceQuestions", "medium"));
@@ -32,7 +32,7 @@ export default function MediumPractice() {
     }
   };
 
-  // Fetch user's previously solved questions
+  
   const fetchUserProgress = async () => {
     const user = authFeature.currentUser;
     if (!user) return;
@@ -46,7 +46,7 @@ export default function MediumPractice() {
     }
   };
 
-  // Handle answer selection
+  
   const handleAnswer = async (selected) => {
     try {
       const user = authFeature.currentUser;
@@ -65,7 +65,7 @@ export default function MediumPractice() {
 
         const userRef = doc(db, "users", user.uid);
 
-        // Update XP and progress for Medium level
+        
         await updateDoc(userRef, {
           xp: increment(20),
           "practiceProgress.mediumCompleted": increment(1),

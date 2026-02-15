@@ -62,7 +62,7 @@ export default function QuizResult() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        {/* Result Header Card */}
+        
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
           <div className={`${performance.bg} p-8 text-center border-b`}>
             <div className="text-6xl mb-4">
@@ -75,7 +75,7 @@ export default function QuizResult() {
           </div>
 
           <div className="p-8">
-            {/* Score Display */}
+          
             <div className="text-center mb-8">
               <div className="relative inline-flex items-center justify-center">
                 <svg className="w-48 h-48" viewBox="0 0 200 200">
@@ -106,7 +106,7 @@ export default function QuizResult() {
               </div>
             </div>
 
-            {/* Stats Grid */}
+            
             <div className="grid grid-cols-3 gap-4 mb-8">
               <div className="bg-green-50 rounded-xl p-4 text-center">
                 <div className="text-3xl font-bold text-green-600">{correct}</div>
@@ -122,7 +122,7 @@ export default function QuizResult() {
               </div>
             </div>
 
-            {/* XP Earned */}
+            
             <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-6 mb-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -140,7 +140,7 @@ export default function QuizResult() {
               </div>
             </div>
 
-            {/* Action Buttons */}
+            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <button
                 onClick={() => router.push("/quiz")}
@@ -164,7 +164,7 @@ export default function QuizResult() {
           </div>
         </div>
 
-        {/* Detailed Analysis */}
+        
         {detailedResults && (
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Question Review</h2>

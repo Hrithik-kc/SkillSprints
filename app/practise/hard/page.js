@@ -20,7 +20,7 @@ export default function HardPractice() {
     fetchUserProgress();
   }, []);
 
-  // Fetch questions from Firestore
+
   const fetchQuestions = async () => {
     try {
       const snap = await getDoc(doc(db, "practiceQuestions", "hard"));
@@ -32,7 +32,7 @@ export default function HardPractice() {
     }
   };
 
-  // Fetch user's previously solved questions
+  
   const fetchUserProgress = async () => {
     const user = authFeature.currentUser;
     if (!user) return;
@@ -46,7 +46,7 @@ export default function HardPractice() {
     }
   };
 
-  // Handle answer selection
+  
   const handleAnswer = async (selected) => {
     try {
       const user = authFeature.currentUser;
@@ -65,7 +65,7 @@ export default function HardPractice() {
 
         const userRef = doc(db, "users", user.uid);
 
-        // Update XP and progress for Hard level (higher XP)
+        
         await updateDoc(userRef, {
           xp: increment(30),
           "practiceProgress.hardCompleted": increment(1),

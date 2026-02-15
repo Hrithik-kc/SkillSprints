@@ -54,12 +54,10 @@ export default function Leaderboard() {
       const quizData = quizDoc.data();
 
       if (!quizData.rewardGiven) {
-        // Add XP
+        
         await updateDoc(doc(db, "users", quizData.userId), {
           xp: increment(rewards[i])
         });
-
-        // Mark reward given
         await updateDoc(doc(db, "quizResults", quizDoc.id), {
           rewardGiven: true
         });

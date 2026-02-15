@@ -38,7 +38,7 @@ export default function TakeQuiz() {
     }
   }, [time]);
 
-  // 🔥 Check 24-hour eligibility + reuse old quiz
+  
   const loadQuiz = async () => {
     const user = authFeature.currentUser;
     if (!user) return;
@@ -59,14 +59,14 @@ export default function TakeQuiz() {
 
       const diffHours = (now - lastTime) / (1000 * 60 * 60);
 
-      // If within 24h → reuse same quiz
+      
       if (diffHours < 24) {
         setQuestions(lastQuiz.questions);
         return;
       }
     }
 
-    // Generate new quiz
+    
     const res = await fetch("/api/question", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -129,7 +129,6 @@ export default function TakeQuiz() {
     );
   }
 
-  // 🔥 Show score screen after submission
   if (score !== null) {
     return (
       <div className="min-h-screen bg-slate-900 text-white p-8 text-center">
