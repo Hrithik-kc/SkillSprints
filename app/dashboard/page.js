@@ -24,7 +24,7 @@ export default function Dashboard() {
 
       <nav className="flex justify-between items-center px-8 py-4 bg-black/30 backdrop-blur-lg border-b border-white/10">
         <h2 className="text-2xl font-bold  text-indigo-400">
-          🚀 AptiMaster
+          🚀 SkillSprint
         </h2>
 
         <button

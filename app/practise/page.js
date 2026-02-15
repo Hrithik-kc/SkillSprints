@@ -30,7 +30,7 @@ export default function MediumPracticeHome() {
   const isHardUnlocked = progress?.mediumSolvedIndexes?.length > 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-100 p-8 flex flex-col items-center">
+    <div className="min-h-screen bg-linear-to-br from-yellow-50 via-white to-yellow-100 p-8 flex flex-col items-center">
 
       <button
         onClick={() => router.push("/dashboard")}
