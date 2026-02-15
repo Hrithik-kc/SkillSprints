@@ -30,11 +30,14 @@ export default function Login() {
           level: 1,
           title: "Beginner",
           leaderboardPoints: 0,
-          practiceProgress: {
-            easyCompleted: 0,
-            mediumCompleted: 0,
-            hardCompleted: 0,
-          },
+         practiceProgress: {
+  easyCompleted: 0,
+  mediumCompleted: 0,
+  hardCompleted: 0,
+  easySolvedIndexes: [],
+  mediumSolvedIndexes: [],
+  hardSolvedIndexes: []
+},
           createdAt: new Date(),
         });
       }
@@ -81,14 +84,14 @@ export default function Login() {
           <input
             type="password"
             placeholder="Password"
-            className="w-full  text-gray-700 h-11 px-4 rounded-lg border bg-sky-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-500"
+            className="w-full  text-gray-700 h-11 px-4 rounded-lg border  bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
             onChange={(event) => setPassword(event.target.value)}
 
            
           />
 
           <button
-            className="w-full h-11 rounded-lg bg-[#00ADB5] hover:bg-[#393E46]  text-white font-semibold transition duration-200"
+            className="w-full h-11 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold transition"
            onClick={handleLogin}>
 
             Login
@@ -106,7 +109,7 @@ export default function Login() {
         </div>
       </div>
     </div>
-  
   </div>
+  
   );
 }
