@@ -68,14 +68,14 @@ export default function Dashboard() {
           <div className="flex flex-col gap-4 mt-6">
 
             <button
-              onClick={() => router.push("/practice")}
+              onClick={() => router.push("/practise")}
               className="bg-indigo-600 hover:bg-indigo-700 py-3 rounded-xl font-semibold shadow-lg transition transform hover:scale-105"
             >
               🎯 Practice Mode
             </button>
 
             <button
-              onClick={() => router.push("/quiz")}
+              onClick={() => router.push("/Quiz")}
               className="bg-purple-600 hover:bg-purple-700 py-3 rounded-xl font-semibold shadow-lg transition transform hover:scale-105"
             >
               🧠 Quiz Mode

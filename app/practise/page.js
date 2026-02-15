@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { auth, db } from "@/lib/firebase";
+import { authFeature, db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 
@@ -11,7 +11,7 @@ export default function PracticeHome() {
 
   useEffect(() => {
     const fetchProgress = async () => {
-      const user = auth.currentUser;
+      const user = authFeature.currentUser;
       if (!user) return;
 
       const snap = await getDoc(doc(db, "users", user.uid));
@@ -39,7 +39,7 @@ export default function PracticeHome() {
       <div className="space-y-6">
 
         <button
-          onClick={() => router.push("/practice/easy")}
+          onClick={() => router.push("/practise/easy")}
           className="w-full bg-green-500 text-white py-4 rounded text-lg"
         >
           Easy (10 XP per question)
@@ -47,7 +47,7 @@ export default function PracticeHome() {
 
         <button
           disabled={!isMediumUnlocked}
-          onClick={() => router.push("/practice/medium")}
+          onClick={() => router.push("/practise/medium")}
           className={`w-full py-4 rounded text-lg ${
             isMediumUnlocked
               ? "bg-yellow-500 text-white"
@@ -59,7 +59,7 @@ export default function PracticeHome() {
 
         <button
           disabled={!isHardUnlocked}
-          onClick={() => router.push("/practice/hard")}
+          onClick={() => router.push("/practise/hard")}
           className={`w-full py-4 rounded text-lg ${
             isHardUnlocked
               ? "bg-red-500 text-white"

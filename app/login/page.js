@@ -30,11 +30,14 @@ export default function Login() {
           level: 1,
           title: "Beginner",
           leaderboardPoints: 0,
-          practiceProgress: {
-            easyCompleted: 0,
-            mediumCompleted: 0,
-            hardCompleted: 0,
-          },
+         practiceProgress: {
+  easyCompleted: 0,
+  mediumCompleted: 0,
+  hardCompleted: 0,
+  easySolvedIndexes: [],
+  mediumSolvedIndexes: [],
+  hardSolvedIndexes: []
+},
           createdAt: new Date(),
         });
       }

@@ -69,11 +69,10 @@ export default function Profile() {
       }
 
       try {
-        // Fetch user data
+       
         const docSnap = await getDoc(doc(db, "users", user.uid));
         setUserData(docSnap.data());
 
-        // Fetch quiz results
         const q = query(
           collection(db, "quizResults"),
           where("userId", "==", user.uid),
@@ -83,7 +82,7 @@ export default function Profile() {
         const snapshot = await getDocs(q);
         setQuizCount(snapshot.size);
 
-        // Calculate stats
+       
         let totalScore = 0;
         let bestScore = 0;
         const recentQuizzes = [];
@@ -146,7 +145,7 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-      {/* Header */}
+   
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <button
@@ -162,10 +161,10 @@ export default function Profile() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Profile Header Card */}
+    
         <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl shadow-xl p-8 mb-8 text-white">
           <div className="flex flex-col md:flex-row items-center gap-6">
-            {/* Avatar */}
+          
             <div className="relative">
               <div className="w-32 h-32 rounded-full bg-white/20 backdrop-blur-lg flex items-center justify-center text-5xl font-bold border-4 border-white/30">
                 {userData?.email?.charAt(0).toUpperCase() || "U"}
@@ -175,12 +174,12 @@ export default function Profile() {
               </div>
             </div>
 
-            {/* User Info */}
+          
             <div className="flex-1 text-center md:text-left">
               <h1 className="text-3xl font-bold mb-2">{userData?.email?.split('@')[0] || "Student"}</h1>
               <p className="text-indigo-100 mb-4">{userData?.email}</p>
               
-              {/* Level & XP */}
+            
               <div className="flex items-center gap-4 justify-center md:justify-start">
                 <div className="bg-white/20 backdrop-blur-lg rounded-lg px-4 py-2">
                   <div className="text-xs text-indigo-100">Level</div>
@@ -198,7 +197,7 @@ export default function Profile() {
                 </div>
               </div>
 
-              {/* Progress Bar */}
+            
               <div className="mt-4">
                 <div className="flex justify-between text-sm mb-1">
                   <span>Progress to Level {(userData?.level || 1) + 1}</span>
@@ -215,9 +214,9 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* Stats Grid */}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {/* Total Quizzes */}
+         
           <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
             <div className="flex items-center justify-between">
               <div>
@@ -232,7 +231,7 @@ export default function Profile() {
             </div>
           </div>
 
-          {/* Average Score */}
+        
           <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
             <div className="flex items-center justify-between">
               <div>
@@ -247,7 +246,6 @@ export default function Profile() {
             </div>
           </div>
 
-          {/* Best Score */}
           <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
             <div className="flex items-center justify-between">
               <div>
@@ -262,7 +260,7 @@ export default function Profile() {
             </div>
           </div>
 
-          {/* Current Streak */}
+    
           <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
             <div className="flex items-center justify-between">
               <div>
@@ -276,7 +274,7 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* Recent Activity */}
+       
         <div className="bg-white rounded-xl shadow-md p-6">
           <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
             <svg className="w-6 h-6 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -324,7 +322,7 @@ export default function Profile() {
               </svg>
               <p>No quiz attempts yet</p>
               <button
-                onClick={() => router.push('/quiz')}
+                onClick={() => router.push('/Quiz')}
                 className="mt-4 px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
               >
                 Start Your First Quiz
@@ -333,10 +331,10 @@ export default function Profile() {
           )}
         </div>
 
-        {/* Action Buttons */}
+       
         <div className="mt-8 flex flex-col sm:flex-row gap-4">
           <button
-            onClick={() => router.push('/practice')}
+            onClick={() => router.push('/practise')}
             className="flex-1 bg-indigo-600 text-white py-4 rounded-xl font-semibold hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-xl"
           >
             Continue Practice
