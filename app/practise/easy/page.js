@@ -102,7 +102,7 @@ export default function EasyPractice() {
   };
 
   if (!questions.length)
-    return <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-100">
+    return <div className="flex items-center justify-center min-h-screen bg-linear-to-br from-indigo-50 via-white to-blue-100">
     
     <div className="bg-white shadow-xl rounded-2xl p-10 flex flex-col items-center gap-6 w-[320px]">
       
@@ -129,7 +129,7 @@ export default function EasyPractice() {
     completedQuestions.length === questions.length;
 
    return (
-  <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white p-8">
+  <div className="min-h-screen bg-linear-to-br from-slate-900 via-blue-950 to-slate-900 text-white p-8">
 
     <button
       onClick={() => router.back()}

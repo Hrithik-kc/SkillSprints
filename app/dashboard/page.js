@@ -75,7 +75,7 @@ export default function Dashboard() {
             </button>
 
             <button
-              onClick={() => router.push("/Quiz")}
+              onClick={() => router.push("/quiz")}
               className="bg-purple-600 hover:bg-purple-700 py-3 rounded-xl font-semibold shadow-lg transition transform hover:scale-105"
             >
               🧠 Quiz Mode

@@ -1,30 +1,72 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { authFeature, db } from "@/lib/firebase";
-import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
+import { db, authFeature } from "@/lib/firebase";
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  orderBy,
+  limit,
+  getDocs
+} from "firebase/firestore";
 
 export default function TakeQuiz() {
   const router = useRouter();
 
   const [questions, setQuestions] = useState([]);
-  const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState([]);
+  const [current, setCurrent] = useState(0);
   const [time, setTime] = useState(60);
+  const [score, setScore] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    generateQuiz();
+    loadQuiz();
   }, []);
 
   useEffect(() => {
-    if (time > 0) {
+    if (time > 0 && !submitted) {
       const timer = setTimeout(() => setTime(time - 1), 1000);
       return () => clearTimeout(timer);
     }
+
+    if (time === 0 && !submitted) {
+      submitQuiz();
+    }
   }, [time]);
 
-  const generateQuiz = async () => {
+  // 🔥 Check 24-hour eligibility + reuse old quiz
+  const loadQuiz = async () => {
+    const user = authFeature.currentUser;
+    if (!user) return;
+
+    const q = query(
+      collection(db, "quizResults"),
+      where("userId", "==", user.uid),
+      orderBy("createdAt", "desc"),
+      limit(1)
+    );
+
+    const snap = await getDocs(q);
+
+    if (!snap.empty) {
+      const lastQuiz = snap.docs[0].data();
+      const lastTime = lastQuiz.createdAt.toDate();
+      const now = new Date();
+
+      const diffHours = (now - lastTime) / (1000 * 60 * 60);
+
+      // If within 24h → reuse same quiz
+      if (diffHours < 24) {
+        setQuestions(lastQuiz.questions);
+        return;
+      }
+    }
+
+    // Generate new quiz
     const res = await fetch("/api/question", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -35,73 +77,118 @@ export default function TakeQuiz() {
     setQuestions(data.questions);
   };
 
-  const handleNext = (option) => {
+  const selectAnswer = (option) => {
+    if (submitted) return;
+
     const updated = [...answers];
     updated[current] = option;
     setAnswers(updated);
 
-    if (current < 4) {
+    if (current < questions.length - 1) {
       setCurrent(current + 1);
     }
   };
 
   const submitQuiz = async () => {
-    const res = await fetch("/api/question", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        type: "submit",
-        questions,
-        userAnswers: answers
-      })
+    if (submitted) return;
+
+    const user = authFeature.currentUser;
+    if (!user) return;
+
+    setSubmitted(true);
+
+    let correct = 0;
+
+    questions.forEach((q, i) => {
+      if (answers[i] === q.correctAnswer) correct++;
     });
 
-    const result = await res.json();
-    const user = authFeature.currentUser;
+    const today = new Date().toISOString().split("T")[0];
 
     await addDoc(collection(db, "quizResults"), {
       userId: user.uid,
-      score: result.score,
+      score: correct,
+      total: questions.length,
       timeTaken: 60 - time,
+      questions,
+      userAnswers: answers,
+      explanations: questions.map(q => q.explanation || ""),
+      dateKey: today,
+      rewardGiven: false,
       createdAt: new Date()
     });
 
-    await updateDoc(doc(db, "users", user.uid), {
-      lastQuizCompleted: true
-    });
-
-    router.push("/quiz");
+    setScore(correct);
   };
 
-  if (!questions.length) return <div className="p-8">Loading...</div>;
+  if (!questions.length) {
+    return (
+      <div className="min-h-screen bg-slate-900 text-white p-8">
+        Loading quiz...
+      </div>
+    );
+  }
+
+  // 🔥 Show score screen after submission
+  if (score !== null) {
+    return (
+      <div className="min-h-screen bg-slate-900 text-white p-8 text-center">
+
+        <h1 className="text-3xl mb-6">
+          🎯 Your Score: {score} / {questions.length}
+        </h1>
+
+        <button
+          onClick={() => router.push("/Quiz")}
+          className="bg-green-600 px-6 py-3 rounded"
+        >
+          Back to Quiz Page
+        </button>
+
+      </div>
+    );
+  }
 
   const q = questions[current];
 
   return (
     <div className="min-h-screen bg-slate-900 text-white p-8">
 
-      <h2 className="mb-4">Time Left: {time}s</h2>
+      <h2 className="mb-4 text-xl">
+        ⏳ Time Left: {time}s
+      </h2>
 
-      <h3 className="mb-6">{q.question}</h3>
+      <h3 className="mb-6 text-lg">
+        Question {current + 1} / {questions.length}
+      </h3>
 
-      {q.options.map((opt, i) => (
-        <button
-          key={i}
-          onClick={() => handleNext(opt)}
-          className="block w-full bg-slate-700 mb-2 p-3 rounded"
-        >
-          {opt}
-        </button>
-      ))}
+      <div className="bg-slate-800 p-6 rounded mb-6">
+        <p className="mb-4">{q.question}</p>
 
-      {current === 4 && (
+        {q.options.map((opt, i) => (
+          <button
+            key={i}
+            onClick={() => selectAnswer(opt)}
+            className={`block w-full mb-2 p-3 rounded ${
+              answers[current] === opt
+                ? "bg-blue-600"
+                : "bg-slate-700"
+            }`}
+          >
+            {opt}
+          </button>
+        ))}
+      </div>
+
+      {current === questions.length - 1 && (
         <button
           onClick={submitQuiz}
-          className="mt-4 bg-green-600 px-6 py-2 rounded"
+          className="bg-green-600 px-6 py-2 rounded"
         >
-          Submit
+          Submit Quiz
         </button>
       )}
+
     </div>
   );
 }

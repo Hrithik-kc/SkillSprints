@@ -216,7 +216,7 @@ export default function MediumPracticeHome() {
         <div className="space-y-8">
           {/* Easy Level */}
           <div className="relative group">
-            <div className={`absolute -inset-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl blur ${
+            <div className={`absolute -inset-2 bg-gradient-to-r rounded-2xl blur ${
               isEasyUnlocked ? "opacity-50 group-hover:opacity-75" : "opacity-20"
             } transition-opacity`}></div>
             <div className="relative">
@@ -294,7 +294,7 @@ export default function MediumPracticeHome() {
 
           {/* Medium Level */}
           <div className="relative group">
-            <div className={`absolute -inset-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl blur ${
+            <div className={`absolute -inset-2 bg-gradient-to-r  rounded-2xl blur ${
               isMediumUnlocked ? "opacity-50 group-hover:opacity-75" : "opacity-20"
             } transition-opacity`}></div>
             <div className="relative">
@@ -376,7 +376,7 @@ export default function MediumPracticeHome() {
 
           {/* Hard Level */}
           <div className="relative group">
-            <div className={`absolute -inset-2 bg-gradient-to-r from-red-400 to-pink-500 rounded-2xl blur ${
+            <div className={`absolute -inset-2 bg-gradient-to-r rounded-2xl blur ${
               isHardUnlocked ? "opacity-50 group-hover:opacity-75" : "opacity-20"
             } transition-opacity`}></div>
             <div className="relative">
@@ -459,7 +459,7 @@ export default function MediumPracticeHome() {
 
         {/* Info Box */}
         <div className="relative mt-12">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-30"></div>
+          <div className="absolute -inset-1 bg-gradient-to-rrounded-xl blur opacity-30"></div>
           <div className="relative bg-black/40 backdrop-blur-xl rounded-xl shadow-2xl p-8 border border-white/10">
             <h3 className="text-2xl font-black text-yellow-400 mb-4 flex items-center">
               <span className="text-3xl mr-3">💡</span>

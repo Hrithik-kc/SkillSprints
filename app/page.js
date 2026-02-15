@@ -10,7 +10,7 @@ export default function Register() {
   const [role, setRole] = useState("student");
 
   return (
-    <div className="min-h-screen flex bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white">
+    <div className="min-h-screen flex bg-linear-to-br from-indigo-900 via-purple-900 to-black text-white">
 
       <div className="hidden md:flex md:w-1/2 lg:w-[45%] relative h-screen overflow-hidden">
         <img
