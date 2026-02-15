@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { auth, db } from "@/lib/firebase";
+import { authFeature, db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 
@@ -11,7 +11,7 @@ export default function PracticeHome() {
 
   useEffect(() => {
     const fetchProgress = async () => {
-      const user = auth.currentUser;
+      const user = authFeature.currentUser;
       if (!user) return;
 
       const snap = await getDoc(doc(db, "users", user.uid));

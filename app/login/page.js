@@ -42,7 +42,7 @@ export default function Login() {
       localStorage.setItem("isAuthenticated", "true");
       window.dispatchEvent(new Event("storage"));
 
-      router.push("/profile");
+      router.push("/dashboard");
     } catch (error) {
       console.log("Login Error:", error);
     }
@@ -107,6 +107,6 @@ export default function Login() {
       </div>
     </div>
   
-  
+  </div>
   );
 }

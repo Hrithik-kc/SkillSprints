@@ -336,7 +336,7 @@ export default function Profile() {
         {/* Action Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4">
           <button
-            onClick={() => router.push('/practice')}
+            onClick={() => router.push('/practise')}
             className="flex-1 bg-indigo-600 text-white py-4 rounded-xl font-semibold hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-xl"
           >
             Continue Practice
