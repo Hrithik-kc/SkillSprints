@@ -81,6 +81,12 @@ export default function QuizHome() {
         >
           Leaderboard
         </button>
+        <button
+          onClick={() => router.push("/dashboard")}
+          className="w-full py-4 rounded-lg bg-red-500 hover:bg-red-600"
+        >
+          Back to Dashboard
+        </button>
 
       </div>
     </div>
