@@ -52,11 +52,7 @@ export default function Register() {
               className="w-full h-11 px-4 rounded-lg bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
 
-            <div className="text-left">
-              <p className="text-sm mb-2 text-gray-300">Select Role</p>
-
-
-            </div>
+            
 
             <button
               className="w-full h-11 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold transition"
