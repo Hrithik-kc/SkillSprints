@@ -66,7 +66,7 @@ export default function TakeQuiz() {
       }
     }
 
-  
+    // Generate new quiz
     const res = await fetch("/api/question", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -129,7 +129,7 @@ export default function TakeQuiz() {
     );
   }
 
-  
+  // 🔥 Show score screen after submission
   if (score !== null) {
     return (
       <div className="min-h-screen bg-slate-900 text-white p-8 text-center">
